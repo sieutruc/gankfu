@@ -1,0 +1,55 @@
+
+#GameOverviewCarousel .thumbnail {
+    margin-bottom: 0;
+}
+#GameOverviewCarousel .carousel-control.left, .carousel-control.right {
+    background-image:none !important;
+}
+#GameOverviewCarousel .carousel-control {
+    color:#fff;
+    top:40%;
+    color:#FA6900;
+    bottom:auto;
+    padding-top:4px;
+    width:30px;
+    height:30px;
+    text-shadow:none;
+    opacity:1;
+}
+#GameOverviewCarousel .carousel-control:hover,#GameOverviewCarousel .carousel-control:focus,#GameOverviewCarousel .carousel-control:active {
+    color: #F38630;
+}
+#GameOverviewCarousel  .carousel-control.left,#GameOverviewCarousel  .carousel-control.right {
+    background-image:none !important;
+}
+#GameOverviewCarousel .carousel-control.right {
+    left:auto;
+    right:-32px;
+}
+#GameOverviewCarousel .carousel-control.left {
+    right:auto;
+    left:-32px;
+}
+#GameOverviewCarousel .carousel-indicators {
+    bottom:-30px;
+}
+#GameOverviewCarousel .carousel-indicators li {
+    border-radius:0;
+    width:10px;
+    height:10px;
+    background:#ccc;
+    border:1px solid #ccc;
+}
+#GameOverviewCarousel .carousel-indicators .active {
+    width:12px;
+    height:12px;
+    background:#FA6900;
+    border-color:#FA6900;
+}
+
+h3.title
+{
+    line-height: 1.5em;
+    height: 3em;       /* height is 2x line-height, so two lines will display */
+    overflow: hidden;  /* prevents extra lines from being visible */
+}

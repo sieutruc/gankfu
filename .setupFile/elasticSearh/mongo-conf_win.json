@@ -1,0 +1,50 @@
+{
+    "__comment__": "Configuration options starting with '__' are disabled",
+    "__comment__": "To enable them, remove the preceding '__'",
+
+    "__comment__": "use the default mongodb of meteor",
+
+    "mainAddress": "localhost:3001",
+
+    "__comment__": "change oplogFile corresponding to your desire",
+
+    "oplogFile": "E:/Project_Home/mongo/oplog.timestamp",
+    "noDump": false,
+    "batchSize": -1,
+    "verbosity": 1,
+    "continueOnError": false,
+
+    "logging": {
+        "type": "file",
+        "filename": "E:/Project_Home/mongo/mongo-connector.log"
+    },
+
+    "__comment__": "indicate which collection will be controlled, ex: meteor.players",
+
+	"namespaces": {
+        "include": ["meteor.users"],
+        "fields": {"meteor.users" : ["createdAt", 
+                                    "emails",
+                                    "lastseen",
+                                    "online",
+                                    "profile",
+                                    "location",
+                                    "phyAdd"]}
+    },
+    
+    "__comment__": "the fields to be indexed by es",
+
+	"__fields": ["phyAdd.add", "phyAdd.country"],
+
+    "__comment__": "elasticsearch 's url endpoint",
+
+    "docManagers": [
+        {
+            "docManager": "elastic_doc_manager",
+            "targetURL": "localhost:9200",
+            "__bulkSize": 1000,
+            "__uniqueKey": "_id",
+            "__autoCommitInterval": null
+        }
+    ]
+}

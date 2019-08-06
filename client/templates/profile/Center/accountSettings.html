@@ -1,0 +1,33 @@
+<template name="accountSettings">
+
+    <!-- edit form column -->
+    <div class="col-md-9 personal-info">
+        <!-- Old Alert Blue
+
+        <div class="alert alert-info alert-dismissable">
+            <a class="panel-close close" data-dismiss="alert">×</a>
+            <i class="fa fa-coffee"></i>
+            This is an <strong>.alert</strong>. Use this to show important messages to the user.
+        </div>
+
+        -->
+
+        <h3>Personal information</h3>
+        {{#with userProfile}}
+        {{#autoForm collection=UsersCollection doc=this id="updateBaiscInfoUser" type="method-update" meteormethod="saveProfileInfo"}}
+          <fieldset id="autoFormFieldSet">
+            {{> afQuickField name='profile.username'}}
+            {{> afQuickField name="phyAdd.add"}}
+            {{> afQuickField name='profile.firstname'}}
+            {{> afQuickField name='profile.lastname'}}
+            {{> afQuickField name='profile.dobtime'}}
+            {{> afQuickField name='profile.gender'}}
+            {{> afQuickField name='profile.occupation'}}
+            {{> afQuickField name='profile.phoneNumber'}}
+          </fieldset>
+          <button type="submit" class="btn btn-primary">update</button>
+        {{/autoForm}}
+        {{/with}}
+    </div>     
+    
+</template>

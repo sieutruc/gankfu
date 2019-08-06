@@ -1,0 +1,35 @@
+<template name="chat">
+    <div id="wrapperChat">
+        {{> sidebarChat }}
+        <div id="page-content-wrapperChat">
+            <h1>Messages</h1>
+            {{> input }}
+            {{> messages }}
+        </div></div>
+</template>
+
+
+<template name="sidebarChat">
+    <div id="sidebarChat-wrapperChat">
+        <ul class="sidebarChat-nav onlUsers">
+            <li class="sidebarChat-brand">
+                <a href="#">
+                    Online Users
+                </a>
+            </li>
+            {{#each onlusr}}
+                <li class="user {{selectedClass}}"><a href='/profileChat'>{{profile.username}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+</template>
+
+<template name="messages">
+    {{#each msgs}}
+        <strong>{{name}}:</strong> {{text}}<br>
+    {{/each}}
+</template>
+
+<template name="input">
+    <p>Message: <input type="text" id="message"></p>
+</template>

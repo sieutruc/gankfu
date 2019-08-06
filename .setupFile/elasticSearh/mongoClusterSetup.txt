@@ -1,0 +1,6 @@
+setup replicat set in mongodb 
+	mongod.conf -> replSet=rs
+
+ReplSet is set by default in meteor's mongo.
+	on Mac, its in .//packages/meteor-tool/.1.1.9.1sd3e7j++os.osx.x86_64+web.browser+web.cordova/mt-os.osx.x86_64/tools/runners/run-mongo.js
+	321 var replSetName = 'meteor';

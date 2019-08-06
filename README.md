@@ -1,2 +1,2 @@
 # gankfu
-a gamer community project
+Gamer community

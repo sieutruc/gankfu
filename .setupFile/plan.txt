@@ -1,0 +1,2 @@
+search
+	optimization: store the result of common resolution of location suggestion ( for ex: a,b,c..z )

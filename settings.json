@@ -1,0 +1,6 @@
+{ 
+	"AWSAccessKeyId":    "",
+	"AWSSecretAccessKey":"",
+	"AWSRegion": "",
+	"AWSBucket":         ""
+}

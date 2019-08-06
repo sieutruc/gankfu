@@ -1,0 +1,16 @@
+<template name="form_map">
+    <div class="control-group">
+        <h2>Address :</h2>
+        <div class="row">
+            <div id="placeSearchBar" class="col-md-5"></div>
+            <span class="help-inline">{{_ help}}</span>
+            <input type="hidden" name="{{name}}" id="{{domid}}" value="{{getLatLng}}"  data-id="{{docid}}" />
+            <div id="currentLocation" class="col-md-2"><label name="latLng">Your current location is: {{getLatLng}}</label></div>
+        </div>
+        <div class="row">
+            <div class="ui segment">
+                <div id='map'></div>
+            </div>
+        </div>
+    </div>
+</template>

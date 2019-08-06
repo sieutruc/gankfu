@@ -1,0 +1,72 @@
+<template name="notifications">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-bell"></span>
+        {{#if newNotificationCount}}
+            <span class="badge badge-inverse">{{newNotificationCount}}</span>
+        {{/if}}
+        <b class="caret"></b>
+    </a>
+    <ul class="notification dropdown-menu">
+        {{#if notificationCount}}
+            {{#each notifications}}
+                {{> notificationItem}}
+            {{/each}}
+        {{else}}
+            <li><span class="text-info">No Notifications</span></li>
+        {{/if}}
+    </ul>
+</template>
+
+<template name="notificationItem">
+    {{> Template.dynamic template=notifType }}
+</template>
+
+<template name="messageNotifType">
+    <li>
+        <a href="{{notificationPostPath}}">
+            <strong>{{desc}}</strong> has sent you a message
+        </a>
+    </li>
+
+</template>
+
+<template name="invitationRequestNotifType">
+    {{#if Template.subscriptionsReady}}
+        <li class="friend_request">
+        {{#if desc}}
+            {{> Template.dynamic template=inviteNotif data=notifData}}
+        {{else}}
+            {{#with notifData}}
+                <a href="profile/test" class="pull-left">
+                    <img href="profile/test" class="pull-left"><img src="{{avatarThumbnail}}" class="profile img-thumbnail" alt="avatar thumbnail" width="30" height="30" />
+                </a>
+                <p>
+                    <a href="profile/test">{{inviterName}}</a> sent you an invitation in <a href="profile/game">{{gameName}} on {{inviteTime}}</a>
+                    <br/>
+                    <button class="btn btn-primary btn-small accept">Accept</button><button class="btn-small btn ignore">Ignore</button>
+                </p>
+            {{/with}}
+        {{/if}}
+    </li>
+    {{else}}
+        <div class="loading">{{>spinner}}</div>
+    {{/if}}
+
+</template>
+
+<template name="invitationAcceptedType">
+
+</template>
+
+<template name="ignoredNotif">
+    <p>The request of <a href='profile/game'>{{inviterName}}</a> from <a href='profile/test'>{{gameName}}</a> was ignored</p>
+</template>
+<template name="canceledNotif">
+    <p>The request of <a href='profile/game'>{{inviterName}}</a> from <a href='profile/test'>{{gameName}}</a> was deleted </p>
+</template>
+<template name="validNotif">
+    <p>You accepted the friendship from <a href='profile/game'>{{inviterName}}</a> in <a href='profile/test'>{{gameName}}</a></p>
+</template>
+<template name="validedNotif">
+    <p><a href='profile/game'>{{inviterName}}</a> accepted the friendship in <a href='profile/test'>{{gameName}}</a></p>
+</template>

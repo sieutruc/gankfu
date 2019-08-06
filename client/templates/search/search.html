@@ -1,0 +1,124 @@
+<template name="searchGeneralPage">
+	{{>userSearchBar}}
+	{{#if searchDefined }}
+        {{> userPage}}
+	{{/if}}
+</template>
+
+
+<template name="userSearchBar">
+    <div class="navbar navbar-searchbar">
+        <form class="form-horizontal searchElements">
+            <div class="form-group-search">
+                <div class="col-md-offset-2 col-md-2 col-sm-offset-2 col-sm-2 col-xs-offset-1 col-xs-5 ">
+                    {{> distanceFilter}}
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-5">
+                    <div class='input-group date ' id='datetimepicker1'>
+                        <input type='text' placeholder="Time" class="form-control " />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="input-group typeAheadSearch col-md-3 col-sm-4 col-xs-offset-1 col-xs-10">
+                    <!--<input class="form-control typeahead " id="searchbox" name="user" type="text" placeholder="Search..."  autocomplete="off" spellcheck="off" data-sets="users" data-highlight='true'/>-->
+                    {{> EasySearch.InputGankfu index=index attributes=typeaheadAttributes }}
+                    <span class="input-group-addon">
+                        <button class='searchButton trigger' id='searchtrigger'>
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>    
+                </div>
+            </div>
+        </form>
+    </div>
+</template>
+
+<template name="userPage">
+    <div class="col-md-offset-2 col-sm-offset-2">
+    </div>
+    <div class="col-md-8 col-md-offset-2 col-sm-offset-2">
+        <div>
+            <h2>User Search </h2>
+        </div>
+
+		{{#EasySearch.IfInputEmpty index=index }}
+		    <div class="padded examples">For example "Paris, France"</div>
+		  {{else}}
+		    {{#if resultsCount}}
+		      <div class="padded count-results">{{resultsCount}} results found.</div>
+		    {{/if}}
+		{{/EasySearch.IfInputEmpty}}
+
+        {{#EasySearch.IfSearching index=index }}
+            <div>Searching</div>
+        {{else}}
+
+            {{#EasySearch.IfNoResults index=index }}
+                <div class="padded no-results">No results found</div>
+            {{else}}
+                {{>gankfu_Each}}
+            {{/EasySearch.IfNoResults }}
+        {{/EasySearch.IfSearching }}
+
+        {{> EasySearch.Pagination index=index maxPages=10 }}
+
+    </div>
+</template>
+
+<template name="gankfu_Each">
+    {{#if Template.subscriptionsReady}}
+
+        {{#each doc}}
+            {{> userInfo this }}
+        {{/each}}
+    {{/if}}
+</template>
+
+<template name="userInfo">
+  <div class="search-result">
+    <div>
+		<i>username</i> : {{profile.username}}
+    </div>
+    <div>
+		<i>Address</i> : {{phyAdd.add}}
+    </div>
+      <di>
+          Invite To Play :
+        {{#each subsribedGames}}
+            {{>subscribeGameTP }}
+        {{/each}}
+          {{#if isFiltered}}
+          {{> inviteFilter data=getFilter}}
+          {{/if}}
+      </di>
+  </div>
+</template>
+
+<template name="subscribeGameTP">
+    <a class="btn btn-xs btn-warning " data-state="{{dataState}}"><span class="glyphicon {{invitedAlready}}"></span> {{getName}}</a>
+</template>
+
+<template name="inviteFilter">
+    <input id="timeInviteId" class="form-control datepicker" type="text" placeholder="Pick time to gank in {{gameName}}" readonly="">
+    <button id="sendInviteId" class="btn btn-primary">Send</button>
+</template>
+
+<template name="userSuggest">
+	<h4><i>{{name}}</i></h4>
+</template>
+
+<template name="noresults">
+	<span>No results found</span>
+</template>
+
+<template name="distanceFilter">
+    <select class="form-control " id="distanceOptions">
+      <option value="10">10km</option>
+      <option value="20">20km</option>
+      <option value="40">40km</option>
+      <option value="80">80km</option>
+      <option value="200">200km</option>
+    </select>
+</template>
